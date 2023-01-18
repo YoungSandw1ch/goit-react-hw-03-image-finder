@@ -1,19 +1,33 @@
-export const Searchbar = () => {
-  return (
-    <header className="searchbar">
-      <form className="form">
-        <button type="submit" className="button">
-          <span className="button-label">Search</span>
-        </button>
+import {
+  Header,
+  SearchForm,
+  SearchFormButton,
+  BtnIcon,
+  Input,
+} from './Searchbar.styled';
 
-        <input
-          className="input"
+export const Searchbar = ({ onSubmit }) => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    onSubmit(e.target.elements.text.value);
+    e.target.reset();
+  };
+
+  return (
+    <Header>
+      <SearchForm onSubmit={handleSubmit}>
+        <SearchFormButton type="submit" aria-label="search">
+          <BtnIcon />
+        </SearchFormButton>
+
+        <Input
+          name="text"
           type="text"
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
         />
-      </form>
-    </header>
+      </SearchForm>
+    </Header>
   );
 };

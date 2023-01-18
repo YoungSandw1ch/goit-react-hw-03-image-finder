@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { CiSearch } from 'react-icons/ci';
 
 export const Header = styled.header`
   top: 0;
@@ -27,4 +28,40 @@ export const SearchForm = styled.form`
   background-color: #fff;
   border-radius: 3px;
   overflow: hidden;
+`;
+
+export const SearchFormButton = styled.button`
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  opacity: 0.6;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+export const BtnIcon = styled(CiSearch)`
+  width: 25px;
+  height: 25px;
+`;
+
+export const Input = styled.input`
+  display: inline-block;
+  width: 100%;
+  font: inherit;
+  font-size: 20px;
+  border: none;
+  outline: none;
+  padding-left: 4px;
+  padding-right: 4px;
+
+  &::placeholder {
+    font: inherit;
+    font-size: 18px;
+  }
 `;
