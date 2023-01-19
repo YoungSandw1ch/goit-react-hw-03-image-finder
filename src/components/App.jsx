@@ -4,18 +4,22 @@ import { Box } from './Common/Box';
 import { Searchbar } from './Searchbar';
 import { Component } from 'react';
 import { getImages } from 'services';
+import { ToastContainer } from 'react-toastify';
 
 export class App extends Component {
   state = {
     query: '',
     page: 1,
+    materials: [],
   };
 
   componentDidUpdate = async (_, pS) => {
     const { query, page } = this.state;
-    if (query && pS.query !== query) {
-      const response = await getImages(query, page);
-      console.log(response);
+    if (pS.query !== query || pS.page !== page) {
+      const materials = await getImages(query, page);
+      this.setState({ materials });
+
+      console.log(materials);
     }
   };
 
@@ -29,6 +33,7 @@ export class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <Box>
+          <ToastContainer />
           <Searchbar onSubmit={setQuery} />
         </Box>
       </ThemeProvider>
