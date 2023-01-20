@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: -5px;
+  /* display: grid;
   max-width: calc(100vw - 48px);
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  grid-gap: 16px;
+  grid-gap: 16px; */
   margin-top: 0;
   margin-bottom: 0;
   padding: 0;

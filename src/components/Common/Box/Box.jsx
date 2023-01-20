@@ -12,7 +12,10 @@ import {
   shadow,
 } from 'styled-system';
 
-export const Box = styled.div({
+export const Box = styled.div(
+  {
+    boxSizing: 'border-box',
+  },
   space,
   color,
   layout,
@@ -22,5 +25,5 @@ export const Box = styled.div({
   background,
   border,
   position,
-  shadow,
-});
+  shadow
+);

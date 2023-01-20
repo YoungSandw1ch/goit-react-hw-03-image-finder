@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Item, Image } from './ImageGalleryItem.styled';
 
 export const ImageGalleryItem = ({ material }) => {
-  const { webformatURL, largeImageURL, tags } = material;
+  const { webformatURL, tags } = material;
 
   return (
     <Item>
@@ -11,11 +11,10 @@ export const ImageGalleryItem = ({ material }) => {
   );
 };
 
-ImageGalleryItem.PropTypes = {
-  material: PropTypes.arrayOf(
-    PropTypes.shape({
-      webformatURL: PropTypes.string.isRequired,
-      largeImageURL: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+ImageGalleryItem.propTypes = {
+  material: PropTypes.shape({
+    webformatURL: PropTypes.string.isRequired,
+    // largeImageURL: PropTypes.string.isRequired,
+    tags: PropTypes.string.isRequired,
+  }).isRequired,
 };

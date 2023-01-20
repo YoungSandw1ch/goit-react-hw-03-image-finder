@@ -9,5 +9,5 @@ export const getImages = async (query, page) => {
   const response = await axios.get(
     `/api/?q=${query}&page=${page}&key=${KEY}${QUERY_TYPE}`
   );
-  return response.data.hits;
+  return response.data;
 };
