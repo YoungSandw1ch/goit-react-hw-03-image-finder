@@ -6,6 +6,7 @@ import { Component } from 'react';
 import { getImages } from 'services';
 import { toast, ToastContainer } from 'react-toastify';
 import { ImageGallery } from './ImageGallery';
+import { Modal } from './Modal';
 
 export class App extends Component {
   state = {
@@ -15,6 +16,7 @@ export class App extends Component {
     totalMaterial: 0,
     isLoading: false,
     error: null,
+    isOpen: false,
   };
 
   async componentDidUpdate(_, pS) {
@@ -49,7 +51,7 @@ export class App extends Component {
 
   render() {
     const { handleSubmit, setPage } = this;
-    const { materials, isLoading, totalMaterial, page } = this.state;
+    const { materials, isLoading, totalMaterial, page, isOpen } = this.state;
     const hasMore =
       totalMaterial === materials.length && page > 1 ? false : true;
 
@@ -64,6 +66,7 @@ export class App extends Component {
             isLoading={isLoading}
             hasMore={hasMore}
           />
+          {isOpen && <Modal />}
         </Box>
       </ThemeProvider>
     );
