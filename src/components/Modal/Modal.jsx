@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { createPortal } from 'react-dom';
 import { Backdrop, ModalWrapper, LargeImage } from './Modal.styled';
@@ -51,3 +52,8 @@ export class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  image: PropTypes.string,
+  closeModal: PropTypes.func.isRequired,
+};

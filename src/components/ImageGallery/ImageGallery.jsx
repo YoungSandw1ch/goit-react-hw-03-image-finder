@@ -46,4 +46,6 @@ ImageGallery.propTypes = {
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,
   setPage: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
+  hasMore: PropTypes.bool,
 };

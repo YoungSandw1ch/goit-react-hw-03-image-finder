@@ -4,7 +4,6 @@ import { Item, Image } from './ImageGalleryItem.styled';
 export const ImageGalleryItem = ({ hit, openModal }) => {
   const { webformatURL, tags, largeImageURL } = hit;
   const handleImgClick = () => {
-    console.log('open modal');
     openModal(largeImageURL);
   };
 
@@ -21,4 +20,5 @@ ImageGalleryItem.propTypes = {
     largeImageURL: PropTypes.string.isRequired,
     tags: PropTypes.string.isRequired,
   }).isRequired,
+  openModal: PropTypes.func.isRequired,
 };

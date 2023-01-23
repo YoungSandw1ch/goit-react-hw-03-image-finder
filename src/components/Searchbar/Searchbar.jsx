@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Header,
   SearchForm,
@@ -39,6 +40,7 @@ export class Searchbar extends Component {
         <Logo isWrap={isWrap} href="/public/index.html">
           Finder
         </Logo>
+
         <SearchForm onSubmit={handleSubmit}>
           <SearchFormButton type="submit" aria-label="search">
             <BtnIcon />
@@ -56,3 +58,7 @@ export class Searchbar extends Component {
     );
   }
 }
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
