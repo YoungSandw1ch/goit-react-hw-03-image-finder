@@ -64,12 +64,10 @@ export class App extends Component {
     const { formSubmit, setPage, closeModal, openModal } = this;
     const { hits, isLoading, totalHits, page, modalImage } = this.state;
     const hasMore = totalHits === hits.length && page > 1 ? false : true;
-    // const showModal = modalImage ? true : false;
 
     return (
       <ThemeProvider theme={theme}>
         <Box>
-          <ToastContainer />
           <Searchbar onSubmit={formSubmit} />
           <ImageGallery
             hits={hits}
@@ -78,13 +76,9 @@ export class App extends Component {
             isLoading={isLoading}
             hasMore={hasMore}
           />
-
           <Modal closeModal={closeModal} image={modalImage} />
-          {/* <CSSTransition in={showModal} timeout={250} unmountOnExit>
-            <Modal closeModal={closeModal} image={modalImage} />
-          </CSSTransition> */}
-          {/* {modalImage && <Modal closeModal={closeModal} image={modalImage} />} */}
         </Box>
+        <ToastContainer />
         <GlobalStyle />
       </ThemeProvider>
     );
