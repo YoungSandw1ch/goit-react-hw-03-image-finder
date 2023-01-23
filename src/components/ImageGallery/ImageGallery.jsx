@@ -1,11 +1,24 @@
 import PropTypes from 'prop-types';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { List } from './ImageGallery.styled';
 import { ImageGalleryItem } from 'components/ImageGalleryItem';
 import { Loader } from 'components/Common/Loader';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import { Box } from 'components/Common/Box';
 
-export const ImageGallery = ({ materials, isLoading, setPage, hasMore }) => {
-  const length = materials.length;
+const endMessage = (
+  <Box textAlign="center" fontWeight="semiBold">
+    Yay! You have seen it all
+  </Box>
+);
+
+export const ImageGallery = ({
+  hits,
+  isLoading,
+  setPage,
+  hasMore,
+  openModal,
+}) => {
+  const length = hits.length;
   const nextPage = () => setPage();
 
   return (
@@ -14,15 +27,11 @@ export const ImageGallery = ({ materials, isLoading, setPage, hasMore }) => {
       next={nextPage}
       hasMore={hasMore}
       loader={isLoading && <Loader />}
-      endMessage={
-        <p style={{ textAlign: 'center' }}>
-          <b>Yay! You have seen it all</b>
-        </p>
-      }
+      endMessage={endMessage}
     >
       <List>
-        {materials.map(material => (
-          <ImageGalleryItem key={material.id} material={material} />
+        {hits.map(hit => (
+          <ImageGalleryItem key={hit.id} hit={hit} openModal={openModal} />
         ))}
       </List>
     </InfiniteScroll>
@@ -30,7 +39,7 @@ export const ImageGallery = ({ materials, isLoading, setPage, hasMore }) => {
 };
 
 ImageGallery.propTypes = {
-  materials: PropTypes.arrayOf(
+  hits: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
     })

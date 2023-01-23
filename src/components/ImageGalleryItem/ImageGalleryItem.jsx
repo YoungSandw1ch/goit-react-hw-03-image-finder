@@ -1,20 +1,24 @@
 import PropTypes from 'prop-types';
 import { Item, Image } from './ImageGalleryItem.styled';
 
-export const ImageGalleryItem = ({ material }) => {
-  const { webformatURL, tags } = material;
+export const ImageGalleryItem = ({ hit, openModal }) => {
+  const { webformatURL, tags, largeImageURL } = hit;
+  const handleImgClick = () => {
+    console.log('open modal');
+    openModal(largeImageURL);
+  };
 
   return (
     <Item>
-      <Image src={webformatURL} alt={tags} />
+      <Image src={webformatURL} alt={tags} onClick={handleImgClick} />
     </Item>
   );
 };
 
 ImageGalleryItem.propTypes = {
-  material: PropTypes.shape({
+  hit: PropTypes.shape({
     webformatURL: PropTypes.string.isRequired,
-    // largeImageURL: PropTypes.string.isRequired,
+    largeImageURL: PropTypes.string.isRequired,
     tags: PropTypes.string.isRequired,
   }).isRequired,
 };

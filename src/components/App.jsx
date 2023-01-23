@@ -1,4 +1,5 @@
 import { ThemeProvider } from 'styled-components';
+import { GlobalStyle } from 'components/Common/GlobalStyle';
 import { theme } from 'constants/thema';
 import { Box } from './Common/Box';
 import { Searchbar } from './Searchbar';
@@ -12,11 +13,11 @@ export class App extends Component {
   state = {
     query: '',
     page: 1,
-    materials: [],
-    totalMaterial: 0,
+    hits: [],
+    totalHits: 0,
     isLoading: false,
     error: null,
-    isOpen: false,
+    modalImage: null,
   };
 
   async componentDidUpdate(_, pS) {
@@ -25,14 +26,16 @@ export class App extends Component {
       if (pS.query !== query || pS.page !== page) {
         this.setState({ isLoading: true });
         const data = await getImages(query, page);
-        const materials = data.hits;
-        if (!materials.length) {
+        const hits = data.hits;
+
+        if (!hits.length) {
           toast.error('Ups, nothing to search');
         }
+
         this.setState(state => ({
-          materials: [...state.materials, ...materials],
+          hits: [...state.hits, ...hits],
           isLoading: false,
-          totalMaterial: data.totalHits,
+          totalHits: data.totalHits,
         }));
       }
     } catch (error) {
@@ -45,29 +48,44 @@ export class App extends Component {
     this.setState(state => ({ page: state.page + 1 }));
   };
 
-  handleSubmit = query => {
-    this.setState({ query, page: 1, materials: [], error: null });
+  formSubmit = query => {
+    this.setState({ query, page: 1, hits: [], error: null });
+  };
+
+  openModal = modalImage => {
+    this.setState({ modalImage });
+  };
+
+  closeModal = () => {
+    this.setState({ modalImage: null });
   };
 
   render() {
-    const { handleSubmit, setPage } = this;
-    const { materials, isLoading, totalMaterial, page, isOpen } = this.state;
-    const hasMore =
-      totalMaterial === materials.length && page > 1 ? false : true;
+    const { formSubmit, setPage, closeModal, openModal } = this;
+    const { hits, isLoading, totalHits, page, modalImage } = this.state;
+    const hasMore = totalHits === hits.length && page > 1 ? false : true;
+    // const showModal = modalImage ? true : false;
 
     return (
       <ThemeProvider theme={theme}>
         <Box>
           <ToastContainer />
-          <Searchbar onSubmit={handleSubmit} />
+          <Searchbar onSubmit={formSubmit} />
           <ImageGallery
-            materials={materials}
+            hits={hits}
             setPage={setPage}
+            openModal={openModal}
             isLoading={isLoading}
             hasMore={hasMore}
           />
-          {isOpen && <Modal />}
+
+          <Modal closeModal={closeModal} image={modalImage} />
+          {/* <CSSTransition in={showModal} timeout={250} unmountOnExit>
+            <Modal closeModal={closeModal} image={modalImage} />
+          </CSSTransition> */}
+          {/* {modalImage && <Modal closeModal={closeModal} image={modalImage} />} */}
         </Box>
+        <GlobalStyle />
       </ThemeProvider>
     );
   }
