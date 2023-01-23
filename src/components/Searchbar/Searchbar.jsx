@@ -37,9 +37,7 @@ export class Searchbar extends Component {
     const { handleSubmit } = this;
     return (
       <Header isWrap={isWrap}>
-        <Logo isWrap={isWrap} href="/public/index.html">
-          Finder
-        </Logo>
+        <Logo isWrap={isWrap}>Finder</Logo>
 
         <SearchForm onSubmit={handleSubmit}>
           <SearchFormButton type="submit" aria-label="search">

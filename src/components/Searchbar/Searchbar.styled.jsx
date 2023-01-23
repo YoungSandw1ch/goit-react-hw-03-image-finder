@@ -23,10 +23,8 @@ export const Header = styled.header`
   transition: min-height 250ms linear;
 `;
 
-export const Logo = styled.a`
-  display: block;
+export const Logo = styled.p`
   color: white;
-  text-decoration: none;
   margin: 0;
   margin-right: ${props => (props.isWrap ? '0' : '20px')};
   margin-bottom: ${props => (props.isWrap ? '20px' : '0')};
