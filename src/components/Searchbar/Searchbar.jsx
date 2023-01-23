@@ -37,7 +37,7 @@ export class Searchbar extends Component {
     const { handleSubmit } = this;
     return (
       <Header isWrap={isWrap}>
-        <Logo isWrap={isWrap} href="/public/index.html">
+        <Logo isWrap={isWrap} href="../../../public/index.html">
           Finder
         </Logo>
 

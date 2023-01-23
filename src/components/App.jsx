@@ -49,6 +49,7 @@ export class App extends Component {
   };
 
   formSubmit = query => {
+    if (query === this.state.query) return;
     this.setState({ query, page: 1, hits: [], error: null });
   };
 
