@@ -23,6 +23,7 @@ export class App extends Component {
   async componentDidUpdate(_, pS) {
     try {
       const { query, page } = this.state;
+      if (!query) return;
       if (pS.query !== query || pS.page !== page) {
         this.setState({ isLoading: true });
         const data = await getImages(query, page);
@@ -49,8 +50,11 @@ export class App extends Component {
   };
 
   formSubmit = query => {
+    console.log('query: ', query);
+    console.log('this.state.query: ', this.state.query);
     if (query === this.state.query) return;
-    this.setState({ query, page: 1, hits: [], error: null });
+    console.log('set state');
+    this.setState({ query, page: 1, hits: [], error: null, totalHits: 0 });
   };
 
   openModal = modalImage => {
