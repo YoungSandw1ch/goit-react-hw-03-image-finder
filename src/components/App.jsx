@@ -50,10 +50,7 @@ export class App extends Component {
   };
 
   formSubmit = query => {
-    console.log('query: ', query);
-    console.log('this.state.query: ', this.state.query);
     if (query === this.state.query) return;
-    console.log('set state');
     this.setState({ query, page: 1, hits: [], error: null, totalHits: 0 });
   };
 
